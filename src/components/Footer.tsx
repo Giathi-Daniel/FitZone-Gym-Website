@@ -107,7 +107,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; 2024 FitZone Gym. All rights reserved. Built with passion for fitness.
+            &copy; 2025 FitZone Gym. All rights reserved. Built with passion for fitness.
           </p>
         </div>
       </div>
