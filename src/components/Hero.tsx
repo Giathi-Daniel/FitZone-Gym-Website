@@ -49,7 +49,7 @@ const Hero = () => {
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slide.image})` }}
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
       ))}
       
@@ -62,13 +62,16 @@ const Hero = () => {
             {slides[currentSlide].subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg font-bold shadow-2xl border-2 border-red-500"
+              onClick={() => document.getElementById('book-session')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Start Your Journey
             </Button>
             <Button 
               size="lg" 
-              variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg"
+              className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-bold shadow-2xl border-2 border-white"
               onClick={scrollToServices}
             >
               Our Services
