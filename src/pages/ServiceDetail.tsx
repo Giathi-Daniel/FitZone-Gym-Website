@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
+import SEO from '@/components/SEO';
 import Footer from '@/components/Footer';
 
 const ServiceDetail = () => {
@@ -144,6 +144,10 @@ const ServiceDetail = () => {
   if (!service) {
     return (
       <div className="min-h-screen flex items-center justify-center">
+        <SEO 
+          title="Service Not Found - FitZone Gym"
+          description="The requested service page could not be found. Browse our available fitness services and programs."
+        />
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Service Not Found</h1>
           <Button onClick={() => navigate('/')}>Return Home</Button>
@@ -152,8 +156,38 @@ const ServiceDetail = () => {
     );
   }
 
+  const serviceSchemaData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": service.title,
+    "description": service.description,
+    "provider": {
+      "@type": "GymAndFitnessCenter",
+      "name": "FitZone Gym",
+      "url": "https://yoursite.lovable.app"
+    },
+    "offers": service.packages.map(pkg => ({
+      "@type": "Offer",
+      "name": pkg.name,
+      "price": pkg.price.replace('$', ''),
+      "priceCurrency": "USD",
+      "description": pkg.sessions
+    })),
+    "image": service.hero,
+    "url": `https://yoursite.lovable.app/service/${serviceId}`
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={`${service.title} - FitZone Gym | Professional Fitness Services`}
+        description={`${service.description.substring(0, 155)}...`}
+        keywords={`${service.title.toLowerCase()}, fitness service, gym program, personal fitness, workout program`}
+        image={service.hero}
+        url={`https://yoursite.lovable.app/service/${serviceId}`}
+        schemaData={serviceSchemaData}
+      />
+      
       <div className="relative h-96 overflow-hidden">
         <img
           src={service.hero}
